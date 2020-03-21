@@ -32,30 +32,24 @@ const constants = {
    <div class="helpy-small-container" id="helpy-small-container">
        <div id="helpy-small-expander-expander">Helpy</div>
    </div>`,
-
-     HEPLY_BIG_CONTAINER: document.getElementById(variables.HEPLY_BIG_CONTAINER),
- HEPLY_SMALL_CONTAINER: document.getElementById(variables.HEPLY_SMALL_CONTAINER),
- HELPY_SMALL_CONTAINER_EXPANDER: document.getElementById(variables.HELPY_SMALL_CONTAINER_EXPANDER),
- HELPY_BIG_CONTAINER_REDUCER: document.getElementById(variables.HELPY_BIG_CONTAINER_REDUCER),
 };
 
 const methods = {
-    createHelpyReady(){
+    createHelpyReady() {
         let HELPY_READY = document.createElement('div');
         HELPY_READY.classList.add(variables.HELPY_READY);
         HELPY_READY.innerHTML = 'Введите поисковую фразу';
         return HELPY_READY;
     },
 
-    addElement () {
+    addElement() {
         let HELPY_WRAPPER = document.createElement("div");
         HELPY_WRAPPER.classList.add(variables.HELPY_WRAPPER);
         HELPY_WRAPPER.innerHTML = constants.HELPY_ELEMENT;
         document.body.appendChild(HELPY_WRAPPER);
 
         document.getElementById(variables.HELPY_RESULT).appendChild(methods.createHelpyReady())
-    },
-
+    }
 };
 
 export const load_widget = {
