@@ -1,10 +1,8 @@
 import './styles/styles.scss'
-import './scripts/queries'
 import {variables} from './scripts/variables'
 import {load_widget} from './scripts/load_widget'
 import {helpers} from './scripts/helpers'
 import {requests} from './scripts/requests'
-import './scripts/result'
 
 load_widget.methods.addElement();
 
@@ -16,9 +14,6 @@ const HELPY_BIG_CONTAINER_REDUCER = document.getElementById(variables.HELPY_BIG_
 const HELPY_SEARCH_BUTTON = document.getElementById(variables.HELPY_SEARCH_BUTTON);
 const HELPY_SEARCH_INPUT = document.getElementById(variables.HELPY_SEARCH_INPUT);
 
-
-
-// функции
 function expandHelpySmallContainer(){
     HEPLY_SMALL_CONTAINER.setAttribute("style", "display:none");
     HEPLY_BIG_CONTAINER.setAttribute("style", "display:block");
@@ -28,8 +23,6 @@ function reduceHelpyBigContainer(){
     HEPLY_BIG_CONTAINER.setAttribute("style", "display:none");
     HEPLY_SMALL_CONTAINER.setAttribute("style", "display:block");
 }
-
-
 
 function addEventsListeners(){
      if(HELPY_SMALL_CONTAINER_EXPANDER){

@@ -6,7 +6,7 @@ const methods = {
     },
 
     createHelpyItem(item) {
-        return `<div class="helpy-list__item helpy-result">
+        return `<a class="helpy-list__item helpy-result" href="https://yandex.ru/" target="_blank">
                <div class="helpy-result__item">
                    <div class="helpy-result__image">
                        <img src="https://f4.bcbits.com/img/a1653763594_5.jpg" alt="" class="helpy-result-image">
@@ -22,7 +22,7 @@ const methods = {
                        </div>
                    </div>
                </div>
-           </div>`
+           </a>`
     },
 
     createHelpyItemsTotal(total) {
