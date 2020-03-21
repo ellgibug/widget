@@ -1,4 +1,5 @@
 import {variables} from './variables'
+import {helpers} from './helpers'
 
 const constants = {
     HELPY_ELEMENT: `
@@ -47,7 +48,6 @@ const methods = {
         HELPY_WRAPPER.classList.add(variables.HELPY_WRAPPER);
         HELPY_WRAPPER.innerHTML = constants.HELPY_ELEMENT;
         document.body.appendChild(HELPY_WRAPPER);
-
         document.getElementById(variables.HELPY_RESULT).appendChild(methods.createHelpyReady())
     }
 };
