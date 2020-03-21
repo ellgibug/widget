@@ -1,60 +1,24 @@
 import './styles/styles.scss'
-import './queries'
+import './scripts/queries'
+import {variables} from './scripts/variables'
+import {load_widget} from './scripts/load_widget'
+import './scripts/result'
 
 // переменные
 
-const HELPY_ELEMENT = `
-   <div class="helpy-big-container" id="helpy-big-container">
 
-       <div class="helpy-big-container__header helpy-big-container-header">
-           <div class="helpy-big-container-header__title helpy-big-container-header-title">
-               Helpy
-           </div>
-           <div class="helpy-big-container-header__action helpy-big-container-header-action">
-               <button id="helpy-big-container-reducer" class="helpy-big-container-header-action__button">
-                   &#9747;
-               </button>
-           </div>
-       </div>
-
-       <div class="helpy-big-container__search helpy-big-container-search">
-           <div class="helpy-big-container-search__input helpy-big-container-search-input">
-               <input type="text" placeholder="Search ..." class="helpy-big-container-search-input__input" id="helpy-search-input">
-           </div>
-           <div class="helpy-big-container-search__action helpy-big-container-search-action">
-               <button class="helpy-big-container-search-action__button" id="helpy-search-button">
-                   &#128269;
-               </button>
-           </div>
-       </div>
-
-       <div class="helpy-big-container__body helpy-big-container-body" id="helpy-result">
-
-       </div>
-   </div>
-
-   <div class="helpy-small-container" id="helpy-small-container">
-       <div id="helpy-small-expander-expander">Helpy</div>
-   </div>`;
-
-function addElement () {
-  let HELPY_WRAPPER = document.createElement("div");
-  HELPY_WRAPPER.classList.add("helpy-wrapper");
-  HELPY_WRAPPER.innerHTML = HELPY_ELEMENT;
-  document.body.appendChild(HELPY_WRAPPER)
-
-  document.getElementById('helpy-result').appendChild(createHelpyReady())
-}
-
-addElement();
+load_widget.methods.addElement();
 
 
-const HEPLY_BIG_CONTAINER = document.getElementById("helpy-big-container");
-const HEPLY_SMALL_CONTAINER = document.getElementById("helpy-small-container");
-const HELPY_SMALL_CONTAINER_EXPANDER = document.getElementById("helpy-small-expander-expander");
-const HELPY_BIG_CONTAINER_REDUCER = document.getElementById("helpy-big-container-reducer");
-const HELPY_SEARCH_BUTTON = document.getElementById("helpy-search-button");
-const HELPY_SEARCH_INPUT = document.getElementById("helpy-search-input");
+
+
+
+const HEPLY_BIG_CONTAINER = document.getElementById(variables.HEPLY_BIG_CONTAINER);
+const HEPLY_SMALL_CONTAINER = document.getElementById(variables.HEPLY_SMALL_CONTAINER);
+const HELPY_SMALL_CONTAINER_EXPANDER = document.getElementById(variables.HELPY_SMALL_CONTAINER_EXPANDER);
+const HELPY_BIG_CONTAINER_REDUCER = document.getElementById(variables.HELPY_BIG_CONTAINER_REDUCER);
+const HELPY_SEARCH_BUTTON = document.getElementById(variables.HELPY_SEARCH_BUTTON);
+const HELPY_SEARCH_INPUT = document.getElementById(variables.HELPY_SEARCH_INPUT);
 
 
 
@@ -77,14 +41,10 @@ function request(){
                                       clearHelpyResult();
                                       createHelpyItemsList(r)
                                       console.log(r)}, 1000);
-//             const r = json.slice(0,2);
-//             clearHelpyResult();
-//             createHelpyItemsList(r)
-//             console.log(r)
           })
           .catch(()=>{
             clearHelpyResult();
-              document.getElementById('helpy-result').appendChild(createHelpyError())
+              document.getElementById(variables.HELPY_RESULT).appendChild(createHelpyError())
           })
 }
 
@@ -94,7 +54,7 @@ function sendSearchRequest(){
     }
 
      clearHelpyResult();
-      document.getElementById('helpy-result').appendChild(createHelpyAwait())
+      document.getElementById(variables.HELPY_RESULT).appendChild(createHelpyAwait())
 
       setTimeout(request(), 10000);
 }
@@ -136,26 +96,25 @@ function createHelpyItem(item){
 }
 
 function createHelpyItemsTotal(total){
-    return `Найдено всего - ${total}`
+    let HELPY_ITEMS_TOTAL = document.createElement('div');
+    HELPY_ITEMS_TOTAL.classList.add("helpy-list-total");
+    HELPY_ITEMS_TOTAL.innerHTML = `Найдено всего - ${total}`;
+    return HELPY_ITEMS_TOTAL;
 }
 
-function createHelpyReady(){
-      let HELPY_READY = document.createElement('div');
-      HELPY_READY.classList.add("helpy-ready");
-      HELPY_READY.innerHTML = 'Введите поисковую фразу';
-      return HELPY_READY;
-}
+
+
 function createHelpyAwait(){
-      let HELPY_AWAIT = document.createElement('div');
-      HELPY_AWAIT.classList.add("helpy-wait");
-      HELPY_AWAIT.innerHTML = 'Загрузка';
-      return HELPY_AWAIT;
+    let HELPY_AWAIT = document.createElement('div');
+    HELPY_AWAIT.classList.add("helpy-wait");
+    HELPY_AWAIT.innerHTML = 'Загрузка';
+    return HELPY_AWAIT;
 }
 function createHelpyError(){
-      let HELPY_ERROR = document.createElement('div');
-      HELPY_ERROR.classList.add("helpy-error");
-      HELPY_ERROR.innerHTML = 'Произошла ошибка';
-      return HELPY_ERROR;
+    let HELPY_ERROR = document.createElement('div');
+    HELPY_ERROR.classList.add("helpy-error");
+    HELPY_ERROR.innerHTML = 'Произошла ошибка';
+    return HELPY_ERROR;
 }
 
 function createHelpyItemsList(data){
@@ -171,12 +130,7 @@ function createHelpyItemsList(data){
 
   HELPY_ITEMS_LIST.innerHTML = itemsList;
 
-  let HELPY_ITEMS_TOTAL = document.createElement('div');
-  HELPY_ITEMS_TOTAL.classList.add("helpy-list-total");
-  HELPY_ITEMS_TOTAL.innerHTML = createHelpyItemsTotal(data.length);
-
-
-  document.getElementById('helpy-result').appendChild(HELPY_ITEMS_LIST).appendChild(HELPY_ITEMS_TOTAL)
+  document.getElementById('helpy-result').appendChild(HELPY_ITEMS_LIST).appendChild(createHelpyItemsTotal(data.length))
 }
 
 function clearHelpyResult(){

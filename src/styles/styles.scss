@@ -8,6 +8,7 @@
   z-index: 1000;
   bottom: 20px;
   right: 20px;
+
 }
 
 
@@ -19,6 +20,7 @@
   border-radius: 10px;
   border: 1px solid black;
   box-sizing: border-box;
+  background-color: white;
 
   &__header{
     padding: 0 0 20px 0;
@@ -187,4 +189,5 @@
   text-align: center;
   line-height: 100px;
   cursor: pointer;
+  background-color: white;
 }
